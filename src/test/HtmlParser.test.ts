@@ -1,9 +1,9 @@
 import { readFileSync } from "fs";
-import { CharacterRatingPageParser } from "../HTMLParser";
+import { CharacterRatingPageParser } from "../HtmlParser";
 import { resolve } from "path";
 
 const getTestHtml = () => {
-  const path = resolve(__dirname, "./HTMLParserTestData/test.html");
+  const path = resolve(__dirname, "./HtmlParserTestData/test.html");
   const testHtml = readFileSync(path, {
     encoding: "utf8",
   });
@@ -15,8 +15,9 @@ describe(CharacterRatingPageParser.name, () => {
   const parser = new CharacterRatingPageParser(html);
 
   it("parse test html", () => {
+    parser.parseFightingData();
     expect(() => {
-      parser.parse();
+      parser.parseFightingData();
     }).not.toThrow();
   });
 });
