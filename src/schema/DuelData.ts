@@ -11,8 +11,6 @@ export const DuelData = z.object({
   ratingChangeDirection: RatingChangeDirection,
   ratingChange: PositiveRealNumber,
   floor: z.string().min(1),
-  myselfPlayerName: z.string().min(1),
-  myselfCharater: z.string().min(1),
   opponentPlayerName: z.string().min(1),
   opponentCharater: z.string().min(1),
   win: NaturalNumberOrZero,

@@ -1,6 +1,7 @@
 import { readFileSync } from "fs";
 import { DuelHistoryHtmlParser } from "./DuelHistoryHtmlParser";
 import { resolve } from "path";
+import { DuelData } from "./schema/DuelData";
 
 const getTestHtml = () => {
   const path = resolve(__dirname, "./test/duel-history-response.html");
@@ -16,6 +17,6 @@ describe(DuelHistoryHtmlParser.name, () => {
 
   it("parse test html", () => {
     const duelData = parser.parseDuelData();
-    console.log(duelData);
+    duelData.every((d) => DuelData.parse(d));
   });
 });

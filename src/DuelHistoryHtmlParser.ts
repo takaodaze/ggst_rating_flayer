@@ -60,8 +60,6 @@ export class DuelHistoryHtmlParser {
         ),
         ratingChange: Number(history.ratingChange.value),
         floor: history.floor,
-        myselfCharater: "", //TODO
-        myselfPlayerName: "", //TODO
         opponentCharater: history.opponentCharactorName,
         opponentPlayerName: history.opponentPlayerName,
         win: Number(history.win),
