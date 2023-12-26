@@ -15,6 +15,7 @@ describe(DuelHistoryHtmlParser.name, () => {
   const parser = new DuelHistoryHtmlParser(html);
 
   it("parse test html", () => {
-    parser.parseDuelData();
+    const duelData = parser.parseDuelData();
+    console.log(duelData);
   });
 });

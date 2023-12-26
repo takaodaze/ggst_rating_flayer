@@ -1,19 +1,20 @@
 import { z } from "zod";
 
+export const NaturalNumberOrZero = z.number().int().min(0);
+export const PositiveRealNumber = z.number().min(0);
+export const RatingChangeDirection = z.union([z.literal("+"), z.literal("-")]);
+
 export const DuelData = z.object({
   duelDate: z.date(),
-  rating: z.number(),
-  ratingRange: z.number(),
-  ratingChangeDirection: z.union([
-    z.literal("positive"),
-    z.literal("negative"),
-  ]),
-  ratingChange: z.number(),
+  rating: NaturalNumberOrZero,
+  ratingRange: NaturalNumberOrZero,
+  ratingChangeDirection: RatingChangeDirection,
+  ratingChange: PositiveRealNumber,
   floor: z.string(),
   myselfPlayerName: z.string(),
   myselfCharater: z.string(),
   opponentPlayerName: z.string(),
   opponentCharater: z.string(),
-  win: z.number().gte(0),
-  lose: z.number().gte(0),
+  win: NaturalNumberOrZero,
+  lose: NaturalNumberOrZero,
 });
