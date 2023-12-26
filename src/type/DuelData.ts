@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const DuelData = z.object({
-  fightedDate: z.date(),
+  duelDate: z.date(),
   rating: z.number(),
   ratingRange: z.number(),
   ratingChangeDirection: z.union([
