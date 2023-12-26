@@ -2,7 +2,7 @@ import * as cheerio from "cheerio";
 import { z } from "zod";
 import { DuelData } from "./type/DuelData";
 
-export class FightingHistoryParser {
+export class DuelHistoryHtmlParser {
   constructor(private readonly html: string) {}
 
   parseFightingData(): z.infer<typeof DuelData>[] {

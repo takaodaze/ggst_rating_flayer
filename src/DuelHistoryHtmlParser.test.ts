@@ -1,5 +1,5 @@
 import { readFileSync } from "fs";
-import { FightingHistoryParser } from "./HtmlParser";
+import { DuelHistoryHtmlParser } from "./DuelHistoryHtmlParser";
 import { resolve } from "path";
 
 const getTestHtml = () => {
@@ -10,9 +10,9 @@ const getTestHtml = () => {
   return testHtml;
 };
 
-describe(FightingHistoryParser.name, () => {
+describe(DuelHistoryHtmlParser.name, () => {
   const html = getTestHtml();
-  const parser = new FightingHistoryParser(html);
+  const parser = new DuelHistoryHtmlParser(html);
 
   it("parse test html", () => {
     parser.parseFightingData();
