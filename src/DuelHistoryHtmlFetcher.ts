@@ -2,7 +2,7 @@ import { z } from "zod";
 import { HistoryApiCharactorParam } from "./type/HistoryApiCharactorParam";
 import { PlayerId } from "./type/PlayerId";
 
-export class HtmlFetcher {
+export class DuelHistoryHtmlFetcher {
   private readonly historyReqUrl: string;
 
   constructor(
@@ -20,8 +20,9 @@ export class HtmlFetcher {
       method: "GET",
     });
 
-    console.log(res.headers);
     const text = await res.text();
+    console.log(text);
+    console.log(res.headers);
     return text;
   }
 }
