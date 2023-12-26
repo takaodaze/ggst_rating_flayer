@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { HistoryApiCharactorParam } from "./type/HistoryApiCharactorParam";
-import { PlayerId } from "./type/PlayerId";
+import { HistoryApiCharactorParam } from "./schema/HistoryApiCharactorParam";
+import { PlayerId } from "./schema/PlayerId";
 
 export class DuelHistoryHtmlFetcher {
   private readonly historyReqUrl: string;
