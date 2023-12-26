@@ -15,14 +15,12 @@ export class DuelHistoryHtmlFetcher {
     this.historyReqUrl = `http://ratingupdate.info/player/${playerId}/${charactor}/history?offset=`;
   }
 
-  async fetchHistoryHtml() {
+  async fetch() {
     const res = await fetch(this.historyReqUrl, {
       method: "GET",
     });
 
     const text = await res.text();
-    console.log(text);
-    console.log(res.headers);
     return text;
   }
 }
