@@ -1,16 +1,28 @@
 import { DuelHistoryHtmlFetcher } from "./DuelHistoryHtmlFetcher";
+import { DuelHistoryHtmlParser } from "./DuelHistoryHtmlParser";
+import { PlayerPageFetcher } from "./PlayerPageFetcher";
+import { PlayerPageParser } from "./PlayerPageParser";
 
 async function main(): Promise<void> {
-  const url = "http://ratingupdate.info/player/2ECF2BA58568939/SO";
-  const fetcher = new DuelHistoryHtmlFetcher(url);
-  const html = fetcher.fetchHistoryHtml();
+  const myselfPlayerId = "2ECF2BA58568939";
+  const myselfCharacter = "SO";
 
-  const res = await fetch(
-    "http://ratingupdate.info/player/2ECF2BA58568939/SO/history?offset=0",
+  const playerPageFetcher = new PlayerPageFetcher(myselfPlayerId);
+  const playerPage = await playerPageFetcher.fetch();
+
+  const playerPageParser = new PlayerPageParser(playerPage);
+  const playerName = playerPageParser.parsePlayerName();
+
+  const duelHistoryHtmlFetcher = new DuelHistoryHtmlFetcher(
+    myselfPlayerId,
+    myselfCharacter,
   );
+  const duelHistoryHtml = await duelHistoryHtmlFetcher.fetch();
+  const duelHistoryHtmlParser = new DuelHistoryHtmlParser(duelHistoryHtml);
+  const duelData = duelHistoryHtmlParser.parseDuelData();
 
-  console.log(res.status);
-  console.log(await res.text());
+  console.log(duelData);
+  console.log(playerName);
 }
 
 main().catch((e) => {
