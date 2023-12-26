@@ -9,8 +9,6 @@ export const expectedData: z.infer<typeof DuelData>[] = [
     ratingChangeDirection: "+",
     ratingChange: 4.1,
     floor: "F8",
-    myselfCharater: "Sol",
-    myselfPlayerName: "博多ソル=バッドガイ",
     opponentCharater: "Sol",
     opponentPlayerName: "BlacblueBlank",
     win: 4,
