@@ -3,7 +3,7 @@ import { CharacterRatingPageParser } from "../HTMLParser";
 import { resolve } from "path";
 
 const getTestHtml = () => {
-  const path = resolve(__dirname, "./ParserTestData/test.html");
+  const path = resolve(__dirname, "./HTMLParserTestData/test.html");
   const testHtml = readFileSync(path, {
     encoding: "utf8",
   });
