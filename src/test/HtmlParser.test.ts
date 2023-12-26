@@ -1,5 +1,5 @@
 import { readFileSync } from "fs";
-import { CharacterRatingPageParser } from "../HtmlParser";
+import { FightingHistoryParser } from "../HtmlParser";
 import { resolve } from "path";
 
 const getTestHtml = () => {
@@ -10,9 +10,9 @@ const getTestHtml = () => {
   return testHtml;
 };
 
-describe(CharacterRatingPageParser.name, () => {
+describe(FightingHistoryParser.name, () => {
   const html = getTestHtml();
-  const parser = new CharacterRatingPageParser(html);
+  const parser = new FightingHistoryParser(html);
 
   it("parse test html", () => {
     parser.parseFightingData();

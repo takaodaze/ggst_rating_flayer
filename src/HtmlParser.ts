@@ -1,10 +1,10 @@
 import * as cheerio from "cheerio";
-import { FightingDataSchema, FightingDataType } from "./type/RatingData";
+import { DuelDataType } from "./type/DuelData";
 
-export class CharacterRatingPageParser {
+export class FightingHistoryParser {
   constructor(private readonly html: string) {}
 
-  parseFightingData(): FightingDataType[] {
+  parseFightingData(): DuelDataType[] {
     const $ = cheerio.load(this.html);
     const historyDiv = $("#history").text();
     console.log(historyDiv);
