@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { DuelData } from "../../type/DuelData";
+import { DuelData } from "../type/DuelData";
 
 export const data: z.infer<typeof DuelData> = {
   fightedDate: new Date("2023-12-13 16:01"),

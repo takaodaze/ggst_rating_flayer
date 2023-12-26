@@ -3,7 +3,7 @@ import { DuelHistoryHtmlParser } from "./DuelHistoryHtmlParser";
 import { resolve } from "path";
 
 const getTestHtml = () => {
-  const path = resolve(__dirname, "./HtmlParserTestData/test.html");
+  const path = resolve(__dirname, "./test/test.html");
   const testHtml = readFileSync(path, {
     encoding: "utf8",
   });
@@ -15,9 +15,6 @@ describe(DuelHistoryHtmlParser.name, () => {
   const parser = new DuelHistoryHtmlParser(html);
 
   it("parse test html", () => {
-    parser.parseFightingData();
-    expect(() => {
-      parser.parseFightingData();
-    }).not.toThrow();
+    parser.parseDuelData();
   });
 });
