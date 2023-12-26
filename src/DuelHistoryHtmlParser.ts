@@ -15,8 +15,12 @@ export class DuelHistoryHtmlParser {
     for (const tr of trList) {
       const thList = this.$(tr).find("td");
       const row: string[] = [];
-      for (const th of thList) {
-        const text = this.$(th).text().replace(/\s/g, "");
+      for (const td of thList) {
+        const wrap = this.$(td);
+        if (wrap.hasClass("opponent_column")) {
+          wrap.find("span").text(""); // remove device tag of opponent name
+        }
+        const text = wrap.text().replace(/\s/g, "");
         row.push(text);
       }
       matrix.push(row);
