@@ -1,8 +1,8 @@
-import { HtmlFetcher } from "./HtmlFetcher";
+import { DuelHistoryHtmlFetcher } from "./DuelHistoryHtmlFetcher";
 
 async function main(): Promise<void> {
   const url = "http://ratingupdate.info/player/2ECF2BA58568939/SO";
-  const fetcher = new HtmlFetcher(url);
+  const fetcher = new DuelHistoryHtmlFetcher(url);
   const html = fetcher.fetchHistoryHtml();
 
   const res = await fetch(

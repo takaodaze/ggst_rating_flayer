@@ -1,5 +1,5 @@
 import { readFileSync } from "fs";
-import { FightingHistoryParser } from "../HtmlParser";
+import { FightingHistoryParser } from "./HtmlParser";
 import { resolve } from "path";
 
 const getTestHtml = () => {

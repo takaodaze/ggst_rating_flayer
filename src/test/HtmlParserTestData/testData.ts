@@ -1,6 +1,7 @@
-import { DuelDataType } from "../../type/DuelData";
+import { z } from "zod";
+import { DuelData } from "../../type/DuelData";
 
-export const data: DuelDataType = {
+export const data: z.infer<typeof DuelData> = {
   fightedDate: new Date("2023-12-13 16:01"),
   rating: 1102,
   ratingRange: 79,

@@ -17,5 +17,3 @@ export const DuelData = z.object({
   win: z.number().gte(0),
   lose: z.number().gte(0),
 });
-
-export type DuelDataType = z.infer<typeof DuelData>;
