@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+    <html class="has-navbar-fixed-top">
+      <meta charset="UTF-8">
+    
+      <head>
+        <title>博多ソル&#x3D;バッドガイ (Sol) | RATING UPDATE</title>
+        <meta property="og:title" content="博多ソル&#x3D;バッドガイ - Sol 1106 ±123 (1394 games)" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/android-chrome-192x192.png">
+        <meta property="og:description" content="Glicko2 ratings for Guilty Gear Strive" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+        <link href="/styles.css" rel="stylesheet" type="text/css">
+        <script src="https://kit.fontawesome.com/ec45b90910.js" crossorigin="anonymous"></script>
+        <script src="/scripts.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+      </head>
+    
+      
+      <body onload="
+          char_id = 'SO';
+            load_history();
+        ">
+        <nav class="navbar is-fixed-top is-danger" role="navigation" aria-label="main navigation">
+          <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+              <strong>RATING UPDATE</strong>
+            </a>
+        
+            <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+        
+          <div class="navbar-menu" id="navMenu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="/top/all">Top 100</a>   
+                <a class="navbar-item" href="/matchups">Matchups</a>  
+                <a class="navbar-item" href="/character_popularity">Popularity</a>  
+                <a class="navbar-item" href="/player_distribution">Distribution</a>  
+                <a class="navbar-item" href="/about">FAQ</a>
+                <a class="navbar-item" href="/stats">Stats</a>
+                <a class="navbar-item" href="http://ratingupdate.info/supporters">Supporters</a>  
+                <div class="navbar-item has-dropdown is-hoverable">
+                  <a class="navbar-link">
+                    Characters
+                  </a>
+                  <div class="navbar-dropdown">
+                <a class="navbar-item" href="/top/SO">Sol</a>
+                <a class="navbar-item" href="/top/KY">Ky</a>
+                <a class="navbar-item" href="/top/MA">May</a>
+                <a class="navbar-item" href="/top/AX">Axl</a>
+                <a class="navbar-item" href="/top/CH">Chipp</a>
+                <a class="navbar-item" href="/top/PO">Potemkin</a>
+                <a class="navbar-item" href="/top/FA">Faust</a>
+                <a class="navbar-item" href="/top/MI">Millia</a>
+                <a class="navbar-item" href="/top/ZA">Zato-1</a>
+                <a class="navbar-item" href="/top/RA">Ramlethal</a>
+                <a class="navbar-item" href="/top/LE">Leo</a>
+                <a class="navbar-item" href="/top/NA">Nagoriyuki</a>
+                <a class="navbar-item" href="/top/GI">Giovanna</a>
+                <a class="navbar-item" href="/top/AN">Anji</a>
+                <a class="navbar-item" href="/top/IN">I-No</a>
+                <a class="navbar-item" href="/top/GO">Goldlewis</a>
+                <a class="navbar-item" href="/top/JC">Jack-O&#x27;</a>
+                <a class="navbar-item" href="/top/HA">Happy Chaos</a>
+                <a class="navbar-item" href="/top/BA">Baiken</a>
+                <a class="navbar-item" href="/top/TE">Testament</a>
+                <a class="navbar-item" href="/top/BI">Bridget</a>
+                <a class="navbar-item" href="/top/SI">Sin</a>
+                <a class="navbar-item" href="/top/BE">Bedman?</a>
+                <a class="navbar-item" href="/top/AS">Asuka</a>
+                <a class="navbar-item" href="/top/JN">Johnny</a>
+                <a class="navbar-item" href="/top/EL">Elphelt</a>
+              </div>
+                </div>
+                </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                                    <form action="/" method="get">
+                    <div class="field is-grouped">
+                      <p class="control">
+                        <input class="input" type="text" id="name" name="name" required autocomplete="on" placeholder="GG Player">
+                      </p>
+                      <p class="control">
+                        <button class="button is-primary" type="submit"><span class="icon"><i class="fas fa-search"></i></span></button>
+                      </p>
+                    </div>
+                                    </form>
+                </div>
+                <a class="navbar-item" href="https://github.com/halvnykterist/rating-update/">
+                  <span class="icon-text">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span></span>
+                  </span>
+                </a>
+                <a class="navbar-item" href="https://twitter.com/sov_gott_games/">
+                  <span class="icon-text">
+                    <span class="icon">
+                      <i class="fab fa-twitter"></i>
+                    </span>
+                    <span></span>
+                  </span>
+                </a>
+                <a class="navbar-item" href="https://ko-fi.com/halvnykterist">
+                  <span class="icon-text">
+                    <span class="icon">
+                      <i class="fas fa-coffee"></i>
+                    </span>
+                    <span></span>
+                  </span>
+                </a>
+                <a class="navbar-item" href="https://www.patreon.com/halvnykterist">
+                  <span class="icon-text">
+                    <span class="icon">
+                      <i class="fab fa-patreon"></i>
+                    </span>
+                    <span></span>
+                  </span>
+                </a>
+            </div>
+          </div>
+        </nav>
+        <section class="hero is-primary">
+          <div class="hero-body has-text-centered">
+            <p class="title">
+              博多ソル&#x3D;バッドガイ
+              <span class="tag is-medium">PS</span>
+            </p>
+          </div>
+        </section>
+        <section class="section">
+          <div class="container">
+            <div class="columns is-flex-wrap-wrap-reverse">
+              <div class="column is-three-quarters-fullhd">
+                <div class="content">
+    
+                  <div id="modal" class="modal">
+    
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <span class="close">&times;</span>
+                        <h2>Opt out from rating update</h2>
+                      </div>
+                      <div class="modal-body">
+                        To opt out put the following code in your R-Code comment section: <span id="code" class="bold"></span> <span id="loader" class="loader"/></span></hr>
+                        <img src="/example.jpg"/>
+                      </div>
+    
+                    </div>
+    
+                  </div>
+    
+                  <h2>
+                    Sol Rating:
+                      1106 ±123 (1394 games)
+                  </h2>
+                      <h4>Top rating:
+                          1188±89 (2023-09-30)
+                      </h4>
+                      <h4>Top defeated:
+                          <a href="/player/310849134C52B41/IN">
+                              <span class="maybe_long_name" title="">初手昇竜</span>
+                              <span>(IN)</span>
+                          </a>
+                          1543±79 (2023-12-07)
+                      </h4>
+    
+                  <div id="history_wrapper">
+                      <h2>Match History</h2>
+                      <button id="decrement_button" onclick="decrement_page()">←</button>
+                      <span id="current_page" style="min-width: 7em; display: inline-block;">Loading...</span>
+                      <button onclick="increment_page()">→</button>
+                      <div id="history">
+                          <p>Loading match history..<p>
+                      </div>
+                  </div>
+                <h2>Matchups</h2>
+                <div class="table-container">
+                  <table>
+                    <tr>
+                      <th>Matchup</th>
+                      <th>Games</th>
+                      <th>Win rate</th>
+                      <th>Rating offset</th>
+                    </tr>
+                      <tr>
+                        <td>Chipp</td>
+                        <td class="centered">3</td>
+                        <td class="centered">100.0%</td>
+                        <td title="1442 ±377" class="rating-up centered">+336 ±378</td>
+                      </tr>
+                      <tr>
+                        <td>Axl</td>
+                        <td class="centered">6</td>
+                        <td class="centered">67.0%</td>
+                        <td title="1294 ±371" class="rating-up centered">+189 ±372</td>
+                      </tr>
+                      <tr>
+                        <td>Baiken</td>
+                        <td class="centered">18</td>
+                        <td class="centered">56.0%</td>
+                        <td title="1260 ±256" class="rating-up centered">+154 ±257</td>
+                      </tr>
+                      <tr>
+                        <td>Asuka</td>
+                        <td class="centered">9</td>
+                        <td class="centered">67.0%</td>
+                        <td title="1256 ±268" class="rating-up centered">+150 ±268</td>
+                      </tr>
+                      <tr>
+                        <td>Sol</td>
+                        <td class="centered">93</td>
+                        <td class="centered">62.0%</td>
+                        <td title="1207 ±150" class="rating-up centered">+102 ±151</td>
+                      </tr>
+                      <tr>
+                        <td>Millia</td>
+                        <td class="centered">22</td>
+                        <td class="centered">59.0%</td>
+                        <td title="1202 ±164" class="rating-up centered">+96 ±165</td>
+                      </tr>
+                      <tr>
+                        <td>Faust</td>
+                        <td class="centered">26</td>
+                        <td class="centered">54.0%</td>
+                        <td title="1195 ±234" class="rating-up centered">+89 ±235</td>
+                      </tr>
+                      <tr>
+                        <td>Anji</td>
+                        <td class="centered">16</td>
+                        <td class="centered">50.0%</td>
+                        <td title="1168 ±212" class="rating-up centered">+62 ±212</td>
+                      </tr>
+                      <tr>
+                        <td>Ky</td>
+                        <td class="centered">57</td>
+                        <td class="centered">58.0%</td>
+                        <td title="1159 ±165" class="rating-up centered">+54 ±166</td>
+                      </tr>
+                      <tr>
+                        <td>Leo</td>
+                        <td class="centered">27</td>
+                        <td class="centered">44.0%</td>
+                        <td title="1144 ±176" class="rating-barely-up centered">+38 ±177</td>
+                      </tr>
+                      <tr>
+                        <td>Sin</td>
+                        <td class="centered">44</td>
+                        <td class="centered">57.0%</td>
+                        <td title="1111 ±166" class="rating-barely-up centered">+5 ±166</td>
+                      </tr>
+                      <tr>
+                        <td>Bridget</td>
+                        <td class="centered">24</td>
+                        <td class="centered">67.0%</td>
+                        <td title="1108 ±171" class="rating-barely-up centered">+2 ±171</td>
+                      </tr>
+                      <tr>
+                        <td>Elphelt</td>
+                        <td class="centered">15</td>
+                        <td class="centered">53.0%</td>
+                        <td title="1104 ±189" class="rating-barely-down centered">-2 ±190</td>
+                      </tr>
+                      <tr>
+                        <td>May</td>
+                        <td class="centered">25</td>
+                        <td class="centered">40.0%</td>
+                        <td title="1084 ±208" class="rating-barely-down centered">-22 ±208</td>
+                      </tr>
+                      <tr>
+                        <td>Goldlewis</td>
+                        <td class="centered">18</td>
+                        <td class="centered">44.0%</td>
+                        <td title="1055 ±246" class="rating-down centered">-51 ±246</td>
+                      </tr>
+                      <tr>
+                        <td>Happy Chaos</td>
+                        <td class="centered">10</td>
+                        <td class="centered">60.0%</td>
+                        <td title="1046 ±289" class="rating-down centered">-60 ±290</td>
+                      </tr>
+                      <tr>
+                        <td>Giovanna</td>
+                        <td class="centered">14</td>
+                        <td class="centered">50.0%</td>
+                        <td title="1015 ±226" class="rating-down centered">-91 ±226</td>
+                      </tr>
+                      <tr>
+                        <td>I-No</td>
+                        <td class="centered">18</td>
+                        <td class="centered">17.0%</td>
+                        <td title="1014 ±259" class="rating-down centered">-92 ±259</td>
+                      </tr>
+                      <tr>
+                        <td>Johnny</td>
+                        <td class="centered">49</td>
+                        <td class="centered">43.0%</td>
+                        <td title="1003 ±146" class="rating-down centered">-103 ±147</td>
+                      </tr>
+                      <tr>
+                        <td>Potemkin</td>
+                        <td class="centered">29</td>
+                        <td class="centered">28.0%</td>
+                        <td title="999 ±218" class="rating-down centered">-107 ±219</td>
+                      </tr>
+                      <tr>
+                        <td>Testament</td>
+                        <td class="centered">12</td>
+                        <td class="centered">25.0%</td>
+                        <td title="944 ±266" class="rating-down centered">-162 ±267</td>
+                      </tr>
+                      <tr>
+                        <td>Nagoriyuki</td>
+                        <td class="centered">12</td>
+                        <td class="centered">33.0%</td>
+                        <td title="930 ±252" class="rating-down centered">-176 ±252</td>
+                      </tr>
+                      <tr>
+                        <td>Jack-O&#x27;</td>
+                        <td class="centered">12</td>
+                        <td class="centered">33.0%</td>
+                        <td title="927 ±248" class="rating-down centered">-179 ±249</td>
+                      </tr>
+                      <tr>
+                        <td>Ramlethal</td>
+                        <td class="centered">43</td>
+                        <td class="centered">37.0%</td>
+                        <td title="895 ±187" class="rating-down centered">-211 ±188</td>
+                      </tr>
+                      <tr>
+                          <td><b>Overall</b></td>
+                        <td class="centered"><b>1394</b></td>
+                        <td class="centered"><b>51.0%</b></td>
+                        <td></td>
+                      </tr>
+                  </table>
+                </div>
+                <div>
+              <button class="tag is-danger is-medium" onclick="toggle_profile('2ECF2BA58568939');">Hide my profile</button>
+              </div>
+            </div>
+          </div>
+          <div class="column is-one-quarter-fullhd">
+            <hr>
+            <aside class="menu">
+                <p class="menu-label">
+                Characters:
+                </p>
+                <ul class="menu-list">
+                    <li class="charTab">
+                    <a href="/player/2ECF2BA58568939/SO">
+                        Sol 1106 ±123 (1394 games)
+                    </a>
+                    </li>
+                    <li class="charTab">
+                    <a href="/player/2ECF2BA58568939/AN">
+                        Anji 895 ±460 (134 games)
+                    </a>
+                    </li>
+                </ul>
+            </aside>
+            <hr>
+          </div>
+          </div>
+        </section>
+    
+      </body>
+    
+      <script type="text/javascript">
+    
+      var span = document.getElementsByClassName("close")[0];
+      let timer = null;
+    
+      span.onclick = function() {
+        var modal = document.getElementById("modal");
+        modal.style.display = "none";
+      }
+    
+      window.onclick = function(event) {
+        var modal = document.getElementById("modal");
+        if (event.target == modal) {
+          modal.style.display = "none";
+    
+          if (timer != null) {
+            clearInterval(timer);
+          }
+        }
+      }
+    
+      
+      function toggle_profile(player_id) {
+        var modal = document.getElementById("modal");
+        modal.style.display = "block";
+    
+        const req = new XMLHttpRequest();
+        req.open("GET", `/api/hide/${player_id}`);
+        req.send();
+    
+        req.onreadystatechange = (e) => {
+          document.getElementById("code").textContent = req.responseText.replaceAll('"', '');
+        }
+    
+        timer = setInterval(() => {
+          poll_player(player_id);
+        }, 2000);
+      }
+    
+      let counter = 0;
+      function poll_player(player_id) {
+        //      ✅
+    
+        if (counter >= 40) {
+          clearInterval(timer);
+    
+          var modal = document.getElementById("modal");
+          modal.style.display = "none";
+    
+          alert("You have idled for too long. Please retry the hide feature");
+        }
+        const req = new XMLHttpRequest();
+        req.open("GET", `/api/hide/poll/${player_id}`);
+        req.send();
+    
+        req.onreadystatechange = (e) => {
+          if (req.readyState == 4 && req.status == 200 && req.response != 'false') {
+            clearInterval(timer);
+            let loader = document.getElementById("loader");
+            loader.className = "";
+            loader.textContent = "✅";
+            setTimeout(() => {
+              location.reload();
+            }, 5000);
+    
+          }
+        }
+    
+        counter++;
+      }
+      </script>
+      <footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+            <strong>RATING UPDATE</strong> is Open Source. Created by <a href="https://twitter.com/sov_gott_games">halvnykterist</a>. Designed by <a href="https://twitter.com/shiburizu">Shiburizu</a>.
+          </p>
+        </div>
+      </footer>
+    </html>

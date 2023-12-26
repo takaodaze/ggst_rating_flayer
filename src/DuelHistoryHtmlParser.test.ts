@@ -3,7 +3,7 @@ import { DuelHistoryHtmlParser } from "./DuelHistoryHtmlParser";
 import { resolve } from "path";
 
 const getTestHtml = () => {
-  const path = resolve(__dirname, "./test/test.html");
+  const path = resolve(__dirname, "./test/duel-history-response.html");
   const testHtml = readFileSync(path, {
     encoding: "utf8",
   });

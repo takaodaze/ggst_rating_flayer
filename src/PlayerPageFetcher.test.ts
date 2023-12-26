@@ -1,6 +1,6 @@
 import { PlayerPageFetcher } from "./PlayerPageFetcher";
 
-describe.only(PlayerPageFetcher.name, () => {
+describe.skip(PlayerPageFetcher.name, () => {
   const fetcher = new PlayerPageFetcher("2ECF2BA58568939");
 
   it("fetch player page", async () => {
