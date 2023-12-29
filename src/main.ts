@@ -79,7 +79,7 @@ export const main = (arg: { initMode?: boolean }) => {
     const firstSubscribe = subscribeRepo.getAll()[0];
 
     const playerName = await fetchPlayerName(firstSubscribe.playerId);
-    console.log(`プレイヤー名: ${playerName} のデータを取得します`);
+    console.log(`プレイヤー:${playerName} のデータを取得します`);
 
     const duelData = await currentDuelData(
       firstSubscribe.playerId,
