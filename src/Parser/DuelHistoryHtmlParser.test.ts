@@ -18,7 +18,7 @@ export const expectedData: z.infer<typeof DuelData> = {
 };
 
 const getTestHtml = () => {
-  const path = resolve(__dirname, "./test/duel-history-response.html");
+  const path = resolve(__dirname, "../test/duel-history-response.html");
   const testHtml = readFileSync(path, {
     encoding: "utf8",
   });

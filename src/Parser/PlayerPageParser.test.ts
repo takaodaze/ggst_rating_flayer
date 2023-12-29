@@ -4,7 +4,7 @@ import { PlayerPageParser } from "./PlayerPageParser";
 import { PlayerName } from "../Schema/PlayerName";
 
 const getTestHtml = () => {
-  const path = resolve(__dirname, "./test/player-page.html");
+  const path = resolve(__dirname, "../test/player-page.html");
   const testHtml = readFileSync(path, {
     encoding: "utf8",
   });
