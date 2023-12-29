@@ -11,6 +11,7 @@ import { CharactorCode } from "./Schema/CharactorCode";
 import { selectNewDuel } from "./selectNewDuel";
 import { Client, Events, GatewayIntentBits } from "discord.js";
 import { DISCORD_TOKEN } from "./secret";
+import { sendResultMessage } from "./message";
 
 const subscribeStoreFilePath = resolve(__dirname, "../subscribe.json");
 const duelHistoryStoreFIlePath = resolve(__dirname, "../duel_history.json");
@@ -77,7 +78,7 @@ export const main = (arg: { initMode?: boolean }) => {
     console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 
     const subscribeRepo = new FileSubscribeRepo(subscribeStoreFilePath);
-    const firstSubscribe = subscribeRepo.getAll()[0];
+    const firstSubscribe = subscribeRepo.getAll()[1];
 
     const playerName = await fetchPlayerName(firstSubscribe.playerId);
     console.log(`プレイヤー:${playerName} のデータを取得します`);
@@ -95,8 +96,17 @@ export const main = (arg: { initMode?: boolean }) => {
       const prevDuelData = duelHistoryRepo.getAll();
       const newDuelData = selectNewDuel(duelData, prevDuelData);
       console.log("new duel data size:", newDuelData.length);
+
+      for (const d of newDuelData) {
+        sendResultMessage(
+          discordClient,
+          { name: playerName, charactor: firstSubscribe.character },
+          d,
+        );
+      }
     }
 
+    // TODO: これだと複数人のサブスクライバーがいると動かない
     duelHistoryRepo.replace(duelData);
 
     discordClient.destroy();
