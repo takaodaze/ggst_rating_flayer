@@ -1,5 +1,6 @@
 {
 	"scripts": {
+		"dev": "ts-node src/main.ts",
 		"test": "jest"
 	},
 	"dependencies": {

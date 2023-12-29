@@ -5,38 +5,51 @@ import { readFileSync, writeFileSync } from "fs";
 import { z } from "zod";
 import { DuelData } from "./Schema/DuelData";
 
+const E = DuelData.extend({
+  duelDate: z.string().datetime(),
+});
 const DuelDataHistoryJson = z.object({
-  history: z.array(DuelData),
+  history: z.array(E),
 });
 
 export class FileDuelHistoryRepository {
   constructor(private readonly filePath: string) {}
 
-  private parseFile() {
+  private parseFile(): z.infer<typeof DuelData>[] {
     const text = readFileSync(this.filePath, { encoding: "utf8" });
-    const subscribeList = DuelDataHistoryJson.parse(JSON.parse(text));
-    return subscribeList.history;
+    const json = JSON.parse(text);
+    const parsedJson = DuelDataHistoryJson.parse(json);
+    const duelHistory = parsedJson.history.map((data) => ({
+      ...data,
+      duelDate: new Date(data.duelDate),
+    }));
+    return duelHistory;
   }
-  private saveFile(history: z.infer<typeof DuelData>[]) {
+  private saveFile(history: z.infer<typeof E>[]) {
     const parsed = DuelDataHistoryJson.parse({ history: history });
     const text = JSON.stringify(parsed);
     writeFileSync(this.filePath, text);
   }
 
-  getAll() {
+  getAll(): z.infer<typeof DuelData>[] {
     const history = this.parseFile();
     return history;
   }
 
-  replace(history: z.infer<typeof DuelData>[]) {
+  replace(history: z.infer<typeof DuelData>[]): void {
     this.deleteAll();
     this.save(history);
   }
 
-  private deleteAll() {
+  private deleteAll(): void {
     this.saveFile([]);
   }
-  private save(history: z.infer<typeof DuelData>[]) {
-    this.saveFile(history);
+  private save(history: z.infer<typeof DuelData>[]): void {
+    this.saveFile(
+      history.map((data) => ({
+        ...data,
+        duelDate: data.duelDate.toISOString(),
+      })),
+    );
   }
 }
