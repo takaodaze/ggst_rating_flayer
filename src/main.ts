@@ -1,7 +1,7 @@
-import { DuelHistoryHtmlFetcher } from "./DuelHistoryHtmlFetcher";
-import { DuelHistoryHtmlParser } from "./DuelHistoryHtmlParser";
-import { PlayerPageFetcher } from "./PlayerPageFetcher";
-import { PlayerPageParser } from "./PlayerPageParser";
+import { DuelHistoryHtmlFetcher } from "./Fetcher/DuelHistoryHtmlFetcher";
+import { DuelHistoryHtmlParser } from "./Parser/DuelHistoryHtmlParser";
+import { PlayerPageFetcher } from "./Fetcher/PlayerPageFetcher";
+import { PlayerPageParser } from "./Parser/PlayerPageParser";
 
 async function main(): Promise<void> {
   const myselfPlayerId = "2ECF2BA58568939";
