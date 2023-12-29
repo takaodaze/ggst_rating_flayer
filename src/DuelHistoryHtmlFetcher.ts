@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { HistoryApiCharactorParam } from "./schema/HistoryApiCharactorParam";
+import { CharactorCode } from "./schema/CharactorCode";
 import { PlayerId } from "./schema/PlayerId";
 
 export class DuelHistoryHtmlFetcher {
@@ -7,10 +7,10 @@ export class DuelHistoryHtmlFetcher {
 
   constructor(
     playerId: z.infer<typeof PlayerId>,
-    charactor: z.infer<typeof HistoryApiCharactorParam>,
+    charactor: z.infer<typeof CharactorCode>,
   ) {
     PlayerId.parse(playerId);
-    HistoryApiCharactorParam.parse(charactor);
+    CharactorCode.parse(charactor);
 
     this.historyReqUrl = `http://ratingupdate.info/player/${playerId}/${charactor}/history?offset=`;
   }

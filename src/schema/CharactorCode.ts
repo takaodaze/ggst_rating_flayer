@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const HistoryApiCharactorParam = z.union([
+export const CharactorCode = z.union([
   z.literal("SO"), // sol
   z.literal("KY"), // ky
   z.literal("MA"), // may
