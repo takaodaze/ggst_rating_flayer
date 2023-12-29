@@ -17,7 +17,7 @@ discordClient.once("ready", async (readyClient) => {
       embeds: [
         {
           color: redColor,
-          title: "博多ソル=バッドガイが対戦してたみたいです",
+          title: "博多ソル=バッドガイ が対戦してたみたいです",
           fields: [
             {
               name: "使用キャラクター",
