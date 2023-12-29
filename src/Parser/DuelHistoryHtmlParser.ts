@@ -34,6 +34,12 @@ export class DuelHistoryHtmlParser {
   parseDuelData(): z.infer<typeof DuelData>[] {
     const matrix = this.parseHistoryMatrix();
     const duelData: z.infer<typeof DuelData>[] = matrix
+      .filter((row) => {
+        // Rating change 列が --- になるばあいがある
+        const ratingChangeValue = row[8].slice(1);
+        const maybe = Number(ratingChangeValue);
+        return isNaN(maybe) ? false : true;
+      })
       .map((row) => {
         const duelDate = row[0].slice(0, -5) + " " + row[0].slice(-5);
         const [rating, ratingRange] = row[1].split("±");
