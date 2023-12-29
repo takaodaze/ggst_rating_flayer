@@ -9,9 +9,12 @@ import { z } from "zod";
 import { DuelData } from "./Schema/DuelData";
 import { CharactorCode } from "./Schema/CharactorCode";
 import { selectNewDuel } from "./selectNewDuel";
+import { Client, Events, GatewayIntentBits } from "discord.js";
 
 const subscribeStoreFilePath = resolve(__dirname, "../subscribe.json");
 const duelHistoryStoreFIlePath = resolve(__dirname, "../duel_history.json");
+
+export const GGST_CHANNEL = "1189317480628359278";
 
 const fetchPlayerName = async (playerId: string) => {
   let playerPage;
@@ -19,6 +22,7 @@ const fetchPlayerName = async (playerId: string) => {
     const playerPageFetcher = new PlayerPageFetcher(playerId);
     playerPage = await playerPageFetcher.fetch();
   } catch (e) {
+    // TODO: リトライ処理
     console.error("failed fetch player page");
     throw e;
   }
@@ -48,6 +52,7 @@ const currentDuelData = async (
     );
     duelHistoryHtml = await duelHistoryHtmlFetcher.fetch();
   } catch (e) {
+    // TODO: リトライ処理
     console.error("failed fetch duel history html");
     throw e;
   }
@@ -64,41 +69,49 @@ const currentDuelData = async (
   return duelData;
 };
 
-export const main = async (initMode: boolean) => {
-  const subscribeRepo = new FileSubscribeRepo(subscribeStoreFilePath);
-  const firstSubscribe = subscribeRepo.getAll()[0];
+export const main = (arg: { initMode?: boolean }) => {
+  const discordClient = new Client({ intents: [GatewayIntentBits.Guilds] });
 
-  const playerName = await fetchPlayerName(firstSubscribe.playerId);
-  console.log(`プレイヤー名: ${playerName} のデータを取得します`);
+  discordClient.once(Events.ClientReady, async (readyClient) => {
+    console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 
-  const duelData = await currentDuelData(
-    firstSubscribe.playerId,
-    firstSubscribe.character,
-  );
+    const subscribeRepo = new FileSubscribeRepo(subscribeStoreFilePath);
+    const firstSubscribe = subscribeRepo.getAll()[0];
 
-  const duelHistoryRepo = new FileDuelHistoryRepository(
-    duelHistoryStoreFIlePath,
-  );
+    const playerName = await fetchPlayerName(firstSubscribe.playerId);
+    console.log(`プレイヤー名: ${playerName} のデータを取得します`);
 
-  duelHistoryRepo.replace(duelData);
+    const duelData = await currentDuelData(
+      firstSubscribe.playerId,
+      firstSubscribe.character,
+    );
 
-  if (!initMode) {
-    // TODO: Discord notification
-    const prevDuelData = duelHistoryRepo.getAll();
-    const newDuelData = selectNewDuel(duelData, prevDuelData);
-    console.log("new duel data:", newDuelData);
-  }
+    const duelHistoryRepo = new FileDuelHistoryRepository(
+      duelHistoryStoreFIlePath,
+    );
+
+    if (!arg.initMode) {
+      const prevDuelData = duelHistoryRepo.getAll();
+      const newDuelData = selectNewDuel(duelData, prevDuelData);
+      console.log("new duel data size:", newDuelData.length);
+      const channel = discordClient.channels.cache.get(GGST_CHANNEL);
+      if (!channel) {
+        throw new Error("channel not found");
+      }
+
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      channel.send("new duel data:" + JSON.stringify(newDuelData));
+    }
+
+    duelHistoryRepo.replace(duelData);
+
+    discordClient.destroy();
+  });
+
+  discordClient.login("");
 };
 
 if (require.main === module) {
-  main(true)
-    .then(() => {
-      console.log("done");
-    })
-    .catch((e) => {
-      console.error(e.message);
-      console.error(Object.keys(e));
-      console.error(e["cause"]);
-      console.error(e.stack);
-    });
+  main({ initMode: false });
 }
