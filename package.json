@@ -1,7 +1,8 @@
 {
 	"scripts": {
 		"dev": "ts-node src/main.ts",
-		"test": "jest"
+		"test": "jest",
+		"build": "tsc"
 	},
 	"dependencies": {
 		"cheerio": "1.0.0-rc.12",
