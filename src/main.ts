@@ -10,6 +10,7 @@ import { DuelData } from "./Schema/DuelData";
 import { CharactorCode } from "./Schema/CharactorCode";
 import { selectNewDuel } from "./selectNewDuel";
 import { Client, Events, GatewayIntentBits } from "discord.js";
+import { DISCORD_TOKEN } from "./secret";
 
 const subscribeStoreFilePath = resolve(__dirname, "../subscribe.json");
 const duelHistoryStoreFIlePath = resolve(__dirname, "../duel_history.json");
@@ -94,14 +95,6 @@ export const main = (arg: { initMode?: boolean }) => {
       const prevDuelData = duelHistoryRepo.getAll();
       const newDuelData = selectNewDuel(duelData, prevDuelData);
       console.log("new duel data size:", newDuelData.length);
-      const channel = discordClient.channels.cache.get(GGST_CHANNEL);
-      if (!channel) {
-        throw new Error("channel not found");
-      }
-
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
-      channel.send("new duel data:" + JSON.stringify(newDuelData));
     }
 
     duelHistoryRepo.replace(duelData);
@@ -109,7 +102,7 @@ export const main = (arg: { initMode?: boolean }) => {
     discordClient.destroy();
   });
 
-  discordClient.login("");
+  discordClient.login(DISCORD_TOKEN);
 };
 
 if (require.main === module) {
