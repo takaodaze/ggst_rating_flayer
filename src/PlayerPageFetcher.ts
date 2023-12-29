@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { PlayerId } from "./schema/PlayerId";
+import { PlayerId } from "./Schema/PlayerId";
 
 export class PlayerPageFetcher {
   private readonly historyReqUrl: string;

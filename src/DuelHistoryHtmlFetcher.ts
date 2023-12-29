@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { CharactorCode } from "./schema/CharactorCode";
-import { PlayerId } from "./schema/PlayerId";
+import { CharactorCode } from "./Schema/CharactorCode";
+import { PlayerId } from "./Schema/PlayerId";
 
 export class DuelHistoryHtmlFetcher {
   private readonly historyReqUrl: string;

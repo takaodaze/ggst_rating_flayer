@@ -2,7 +2,7 @@ import { z } from "zod";
 import { readFileSync } from "fs";
 import { DuelHistoryHtmlParser } from "./DuelHistoryHtmlParser";
 import { resolve } from "path";
-import { DuelData } from "./schema/DuelData";
+import { DuelData } from "./Schema/DuelData";
 
 export const expectedData: z.infer<typeof DuelData> = {
   duelDate: new Date("2023-12-13 16:01"),

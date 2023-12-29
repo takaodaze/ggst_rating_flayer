@@ -1,7 +1,7 @@
 import { readFileSync } from "fs";
 import { resolve } from "path";
 import { PlayerPageParser } from "./PlayerPageParser";
-import { PlayerName } from "./schema/PlayerName";
+import { PlayerName } from "./Schema/PlayerName";
 
 const getTestHtml = () => {
   const path = resolve(__dirname, "./test/player-page.html");

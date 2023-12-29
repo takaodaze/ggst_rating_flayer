@@ -1,6 +1,6 @@
 import * as cheerio from "cheerio";
 import { z } from "zod";
-import { DuelData, RatingChangeDirection } from "./schema/DuelData";
+import { DuelData, RatingChangeDirection } from "./Schema/DuelData";
 
 export class DuelHistoryHtmlParser {
   private readonly $;
